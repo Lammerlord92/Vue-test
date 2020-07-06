@@ -3,6 +3,8 @@ var app=new Vue({
     el:'#app',
     data:{
         product:'Socks',
-        description:'This is a pair of socks'
+        image:'./assets/vmSocks-green.jpg',
+        description:'This is a pair of socks',
+        link:'https://vuetifyjs.com/en/getting-started/quick-start/'
     }
 })
