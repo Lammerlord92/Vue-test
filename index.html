@@ -1,21 +1,24 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <meta name="viewport" content="width=device-width">
+        <meta name="viewport" content="width=device-width, height=width=device-height">
         <title>Product App</title>
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
     </head>
     <body> 
         <div class="nav-bar"></div>
         <div id="app">
-            <div class="product">
+            <div class="product row">
                 
-                <div class="product-image">
-                    <a :href="link"><img :src="image"></a>
+                <div class="product-image col-sm">
+                    <a :href="link"><img :src="image" class="img-thumbnail"></a>
+                    
                 </div>
 
-                <div class="product-info">
+                <div class="product-info col-sm">
                     <h1>{{ product }}</h1>
+                    <p>In stock</p>
+                    <p>Out of stock</p>
                 </div>
 
             </div>
