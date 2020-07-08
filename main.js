@@ -8,6 +8,22 @@ var app=new Vue({
         link:'https://vuetifyjs.com/en/getting-started/quick-start/',
         inventory:100,
         onSale:"true",
-        details:["80% cotton", "20% polyester", "Gender-neutral"]
+        details:["80% cotton", "20% polyester", "Gender-neutral"],
+        variants:[
+            {
+                variantId: 2234,
+                variantColor: "green"
+            },
+            {
+                variantId: 2235,
+                variantColor: "blue"
+            }
+        ],
+        cart:0
+    },
+    methods:{
+        addToCart: function(){
+            this.cart += 1
+        }
     }
 })
