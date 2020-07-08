@@ -29,6 +29,7 @@
                         <p @mouseover="updateProduct(variant.variantImage)">{{variant.variantColor}}</p>
                     </div>
                     <button v-on:click="addToCart">Add to cart</button>
+                    <button v-if="cart>0" v-on:click="removeFromCart">Remove from cart</button>
                     <div class="cart">
                         <p>Cart ({{cart}})</p>
                     </div>
