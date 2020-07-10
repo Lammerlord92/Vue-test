@@ -6,7 +6,7 @@ var app = new Vue({
         image: './assets/vmSocks-green.jpeg',
         description: 'This is a pair of socks',
         link: 'https://vuetifyjs.com/en/getting-started/quick-start/',
-        inventory: 100,
+        inventory: 10,
         onSale: "true",
         details: ["80% cotton", "20% polyester", "Gender-neutral"],
         variants: [
@@ -26,9 +26,11 @@ var app = new Vue({
     methods: {
         addToCart() {
             this.cart += 1
+            this.inventory -=1
         },
         removeFromCart() {
             this.cart -= 1
+            this.inventory +=1
         },
         updateProduct(variantImage){
             this.image=variantImage
