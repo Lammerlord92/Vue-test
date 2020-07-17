@@ -7,35 +7,40 @@ var app = new Vue({
         selectedVariant:0,
         description: 'This is a pair of socks',
         link: 'https://vuetifyjs.com/en/getting-started/quick-start/',
-        inventory: 10,
         onSale: "true",
         details: ["80% cotton", "20% polyester", "Gender-neutral"],
         variants: [
             {
                 variantId: 2234,
                 variantColor: "green",
-                variantImage: './assets/vmSocks-green.jpeg'
+                variantImage: './assets/vmSocks-green.jpeg',
+                variantQuantity: 10,
+                variantCart:0
             },
             {
                 variantId: 2235,
                 variantColor: "blue",
-                variantImage: './assets/vmSocks-blue.jpeg'
+                variantImage: './assets/vmSocks-blue.jpeg',
+                variantQuantity: 0,
+                variantCart:0
             }
-        ],
-        cart: 0
+        ]
     },
     methods: {
         addToCart() {
-            this.cart += 1
-            this.inventory -=1
+            this.variants[this.selectedVariant].variantCart += 1
+            this.variants[this.selectedVariant].variantQuantity -=1
         },
         removeFromCart() {
-            this.cart -= 1
-            this.inventory +=1
+            this.variants[this.selectedVariant].variantCart -= 1
+            this.variants[this.selectedVariant].variantQuantity +=1
         },
         updateProduct(index){
             this.selectedVariant=index
             console.log(this.selectedVariant)
+        },
+        variantInStock(index){
+            return this.variants[index].variantQuantity>0
         }
     },
     computed:{
@@ -45,6 +50,5 @@ var app = new Vue({
         image() {
             return this.variants[this.selectedVariant].variantImage
         }
-        
     }
 })
