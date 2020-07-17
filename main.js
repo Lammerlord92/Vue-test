@@ -3,6 +3,7 @@ var app = new Vue({
     el: '#app',
     data: {
         product: 'Socks',
+        branch:"Brand",
         image: './assets/vmSocks-green.jpeg',
         description: 'This is a pair of socks',
         link: 'https://vuetifyjs.com/en/getting-started/quick-start/',
@@ -35,5 +36,11 @@ var app = new Vue({
         updateProduct(variantImage){
             this.image=variantImage
         }
+    },
+    computed:{
+        title() {
+            return this.brand+ this.name
+        }
+        
     }
 })
