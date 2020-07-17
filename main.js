@@ -74,10 +74,12 @@ Vue.component('product',{
         addToCart() {
             this.variants[this.selectedVariant].variantCart += 1
             this.variants[this.selectedVariant].variantQuantity -=1
+            this.$emit('add-to-cart')
         },
         removeFromCart() {
             this.variants[this.selectedVariant].variantCart -= 1
             this.variants[this.selectedVariant].variantQuantity +=1
+            this.$emit('remove-from-cart')
         },
         updateProduct(index){
             this.selectedVariant=index
@@ -104,6 +106,15 @@ Vue.component('product',{
 var app = new Vue({
     el: '#app',
     data: {
-        premium:false
+        premium:false,
+        cartElementsNumber:0
+    },
+    methods:{
+        addToCart(){
+            this.cartElementsNumber += 1
+        },
+        remFromCart(){
+            this.cartElementsNumber -= 1
+        }
     }
 })
