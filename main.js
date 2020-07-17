@@ -3,8 +3,8 @@ var app = new Vue({
     el: '#app',
     data: {
         product: 'Socks',
-        branch:"Brand",
-        image: './assets/vmSocks-green.jpeg',
+        brand:"Vue Mastery",
+        selectedVariant:0,
         description: 'This is a pair of socks',
         link: 'https://vuetifyjs.com/en/getting-started/quick-start/',
         inventory: 10,
@@ -33,13 +33,17 @@ var app = new Vue({
             this.cart -= 1
             this.inventory +=1
         },
-        updateProduct(variantImage){
-            this.image=variantImage
+        updateProduct(index){
+            this.selectedVariant=index
+            console.log(this.selectedVariant)
         }
     },
     computed:{
         title() {
-            return this.brand+ this.name
+            return this.brand+' '+ this.product
+        },
+        image() {
+            return this.variants[this.selectedVariant].variantImage
         }
         
     }
