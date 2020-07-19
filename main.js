@@ -1,3 +1,14 @@
+Vue.component('paint-form',{
+    template:`
+    <input v-model="name"></input>
+    `,
+    data(){
+        return{
+            name:null
+        }
+    }
+})
+
 Vue.component('product',{
     props: {
         premium:{
@@ -42,7 +53,6 @@ Vue.component('product',{
                     </div>
                 </div>
             </div>
-
         </div>
     `,
     data(){return{
