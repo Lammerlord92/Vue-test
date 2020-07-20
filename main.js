@@ -1,3 +1,63 @@
+Vue.component('paint-form',{
+    template:`
+    <form class="review-form" @submit.prevent="onSubmit">
+        <p>
+            <label for="name">Name:</label>
+            <input id="name" v-model="name"></input>
+        </p>
+        <p>
+            <label for="brand">Brand:</label>
+            <input id="brand" v-model="brand"></input>
+        </p>
+        <p>
+            <label for="code">Code:</label>
+            <input id="code" v-model="code"></input>
+        </p>
+        <p>
+            <label for="notes">Notes:</label>
+            <textarea id="notes" v-model="notes"></textarea>
+        </p>
+        <p>
+            <label for="rating">Rating:</label>
+            <select id="rating" v-model.number="rating">
+                <option>5</option>
+                <option>4</option>
+                <option>3</option>
+                <option>2</option>
+                <option>1</option>
+            </select>
+        </p>
+        <p>
+            <input type="submit" value="Submit">
+    </form>
+    `,
+    data(){
+        return{
+            name: null,
+            brand: null,
+            code: null,
+            notes: null,
+            rating: 3
+        }
+    },methods:{
+        onSubmit(){
+            let paint={
+                name: this.name,
+                brand: this.brand,
+                code: this.code,
+                notes: this.notes,
+                rating: this.rating
+            }
+            this.$emit('paint-submitted',paint)
+            this.name=null
+            this.brand= null
+            this.code =null
+            this.notes= null
+            this.rating= 3
+        }
+    }
+})
+
 Vue.component('product',{
     props: {
         premium:{
@@ -42,7 +102,7 @@ Vue.component('product',{
                     </div>
                 </div>
             </div>
-
+            <paint-form @paint-submitted="addPainting"></paint-form>
         </div>
     `,
     data(){return{
@@ -68,7 +128,8 @@ Vue.component('product',{
                 variantQuantity: 0,
                 variantCart:0
             }
-        ]
+        ],
+        paints: []
     }},
     methods: {
         addToCart() {
@@ -86,6 +147,9 @@ Vue.component('product',{
         },
         variantInStock(index){
             return this.variants[index].variantQuantity>0
+        },
+        addPainting(paint){
+            this.paints.push(paint)
         }
     },
     computed:{
@@ -111,6 +175,11 @@ var app = new Vue({
     methods:{
         addToCart(id){
             this.cart.push(id)
+        }
+    },
+    computed:{
+        cartObjectNumber() {
+            return this.cart.length
         }
     }
 })
